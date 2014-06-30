@@ -108,7 +108,15 @@ def gen_column_command(pattern):
     commands = {'Stbld':emptyPat,'Dacld':emptyPat,'GCfgCK':emptyPat,'SRIN_ALL':SregPat,'SRCK_G':ClkPat,'NU':emptyPat}
 
     return commands
-    
+
+def extraclk(num):
+    ClkData=generate_clock(num,CLOCK_UNIT_DURATION/2)
+    ClkPat= ClkData+'0'*(LEN_COLUMN-len(ClkData))
+    emptyPat='0'*len(ClkPat)
+
+    commands = {'Stbld':emptyPat,'Dacld':emptyPat,'GCfgCK':emptyPat,'SRIN_ALL':emptyPat,'SRCK_G':ClkPat,'NU':emptyPat}
+
+    return commands
     
 def command_Dict_combine(*args):
     """Combining multiple command dictionaries, this used in more complex commands associated with pixel commands"""
@@ -139,5 +147,5 @@ def Gcfg_Test(index):
 def Column_Array_Test(row,num):
     """A bitpattern of a '1' only at the associated index, this is only used to test the column register, check if everything is working"""
 
-    col_pat='0'*row+'1'*num+'0'*(MAXROWS-row-num)
+    col_pat='0'*row+'1'*num+'1'*(MAXROWS-row-num)
     return gen_column_command(col_pat)
