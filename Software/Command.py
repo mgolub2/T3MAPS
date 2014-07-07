@@ -100,7 +100,7 @@ def gen_column_command(pattern):
     colSreg=pattern[::-1]
     SregData=repeat_each(colSreg,CLOCK_UNIT_DURATION)
     SregPat=SregData+'0'*(LEN_COLUMN-len(SregData)-1)
-    SregPat='0'+SregPat
+    SregPat='0'+SregPat[:-1]
     ClkData=generate_clock(len(colSreg),CLOCK_UNIT_DURATION/2)
     ClkPat= ClkData+'0'*(LEN_COLUMN-len(ClkData))
     emptyPat='0'*len(ClkPat)
