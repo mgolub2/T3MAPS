@@ -75,7 +75,7 @@ def gen_config_command(pattern, load_dacs=False, load_control=True):
 
     SregData=repeat_each(pattern,CLOCK_UNIT_DURATION)
     SregPat=SregData+'0'*(LEN_CONFIG-len(SregData)-1)
-    SregPat='0'+SregPat[:-1]
+    SregPat='0'+SregPat
 
     ClkData=generate_clock(len(pattern),CLOCK_UNIT_DURATION/2)
     ClkPat=ClkData+'0'*(LEN_CONFIG-len(ClkData))
@@ -100,7 +100,7 @@ def gen_column_command(pattern):
     colSreg=pattern[::-1]
     SregData=repeat_each(colSreg,CLOCK_UNIT_DURATION)
     SregPat=SregData+'0'*(LEN_COLUMN-len(SregData)-1)
-    SregPat='0'+SregPat[:-1]
+    SregPat='0'+SregPat
     ClkData=generate_clock(len(colSreg),CLOCK_UNIT_DURATION/2)
     ClkPat= ClkData+'0'*(LEN_COLUMN-len(ClkData))
     emptyPat='0'*len(ClkPat)
