@@ -170,9 +170,8 @@ def Test_Pattern_Column(args):
         raise Exception
     for i in range(0,args.num):
         sendFile.write(str(i)+": \n")
-        auto(args.port,Command.command_Dict_combine(Command.point_to_column(args.col,"00"),Command.Column_Array_Test(i,1),Command.extraclk(64)),sendFile,readFile,if_read=False)
-        #auto(args.port,Command.point_to_column(args.col,"00"),sendFile,readFile,if_read=False)
-	#auto(args.port,Command.Column_Array_Test(i,1),sendFile,readFile,if_read=False)
+        auto(args.port,Command.point_to_column(args.col,"00"),sendFile,readFile,if_read=False)
+	auto(args.port,Command.Column_Array_Test(i,1),sendFile,readFile,if_read=False)
         readFile.write(str(i)+": \n")
         auto(args.port,Command.Column_Array_Test(i,1),sendFile,readFile)
         readFile.write("\n")
