@@ -75,7 +75,7 @@ def gen_config_command(pattern, load_dacs=False, load_control=True):
 
     SregData=repeat_each(pattern,CLOCK_UNIT_DURATION)
     SregPat=SregData+'0'*(LEN_CONFIG-len(SregData)-1)
-    SregPat='0'+SregPat
+    SregPat='0'+SregPat[:-1]
 
     ClkData=generate_clock(len(pattern),CLOCK_UNIT_DURATION/2)
     ClkPat=ClkData+'0'*(LEN_CONFIG-len(ClkData))
@@ -106,15 +106,6 @@ def gen_column_command(pattern):
     emptyPat='0'*len(ClkPat)
 
     commands = {'Stbld':emptyPat,'Dacld':emptyPat,'GCfgCK':emptyPat,'SRIN_ALL':SregPat,'SRCK_G':ClkPat,'NU':emptyPat}
-
-    return commands
-
-def extraclk(num):
-    ClkData=generate_clock(num,CLOCK_UNIT_DURATION/2)
-    ClkPat= ClkData+'0'*(LEN_COLUMN-len(ClkData))
-    emptyPat='0'*len(ClkPat)
-
-    commands = {'Stbld':emptyPat,'Dacld':emptyPat,'GCfgCK':emptyPat,'SRIN_ALL':emptyPat,'SRCK_G':ClkPat,'NU':emptyPat}
 
     return commands
     
